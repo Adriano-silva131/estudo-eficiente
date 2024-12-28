@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Navbar = ({ toggleSidebar }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isAuthenticated } = useContext(AuthContext);
-
+  const { isAuthenticated, user } = useContext(AuthContext);
+  
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -19,28 +19,42 @@ const Navbar = ({ toggleSidebar }) => {
         <div className="flex items-center">
           {isAuthenticated && (
             <button onClick={toggleSidebar} className="text-black mr-4">
-              <FontAwesomeIcon icon={faBars} style= {{ color: '#0ea5e9'}} className="mr-2" />
+              <FontAwesomeIcon
+                icon={faBars}
+                style={{ color: "#0ea5e9" }}
+                className="mr-2"
+              />
             </button>
           )}
         </div>
         {/* Conteúdo à direita */}
         <div className="flex items-center">
           {/* Links de Login e Register (visíveis em telas médias e maiores) */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Link
-              to="/login"
-              className="text-black hover:bg-blue-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-            >
-              Login
-            </Link>
-            <Link
-              to="/register"
-              className="text-black hover:bg-blue-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium mr-2"
-            >
-              Register
-            </Link>
-          </div>
-
+          {isAuthenticated ? (
+            <div className="flex items-center space-x-4 mr-4">
+              <FontAwesomeIcon
+                icon={faUser}
+                style={{ color: "#0ea5e9" }}
+                className="text-lg"
+              />
+              <span className="text-black font-medium">{user.name}</span>
+            </div>
+          ) : (
+            <div className="hidden md:flex items-center space-x-4">
+              <Link
+                to="/login"
+                className="text-black hover:bg-blue-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="text-black hover:bg-blue-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium mr-2"
+              >
+                Register
+              </Link>
+            </div>
+          )}
           {/* Botão do menu móvel (visível em telas pequenas) */}
           <div className="-mr-2 flex md:hidden">
             <button

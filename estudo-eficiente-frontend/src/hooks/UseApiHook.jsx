@@ -8,27 +8,27 @@ const useApi = (url, method = "GET", body = null) => {
 
   const fetchData = async () => {
     setLoading(true);
-    try { 
-
+    try {
       const token = localStorage.getItem("token");
 
-      const headers = token ? {Authorization: `Bearer ${token}`} : {};
+      const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
-        const response = await axios({
-            url:`http://localhost:8000${url}`,
-            method,
-            data: body,
-            headers,
-        });
-
-        setData(response.data);
-    } catch (err) {
-        setError(err);
+      const response = await axios({
+        url: `http://localhost:8000${url}`,
+        method,
+        data: body,
+        headers,
+      });
+      setData(response.data);
+      return response.data;
+    } catch (error) {
+      setError(error);
+      throw error;
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
   };
-  return {data, error, loading, fetchData };
+  return { data, error, loading, fetchData };
 };
 
 export default useApi;

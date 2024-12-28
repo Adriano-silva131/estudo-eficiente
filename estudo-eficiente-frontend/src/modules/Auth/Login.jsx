@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useApi from "../../hooks/UseApiHook";
 import { AuthContext } from "../../context/AuthContext";
-
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +10,6 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
-
 
   const {
     data,
@@ -24,17 +23,27 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await fetchData();
+    const toastId = toast.loading("Processando...");
+    try {
+      const response = await fetchData();
 
-    if (data && data.access_token) {
-      localStorage.setItem('token', data.access_token	);
-      localStorage.getItem('token')
-      login();
-      navigate("/");
-    } else {
-      setError(apiError);
+      if (response && response.access_token) {
+        toast.update(toastId, {
+          render: `Bem-vindo, ${response.user.name}!`,
+          type: "success",
+          isLoading: false,
+          autoClose: 3000, // Fecha após 3 segundos
+        });
+        localStorage.setItem("token", response.access_token);
+        navigate("/");
+        login({
+          name: response.user.name,
+          email: response.user.email,
+        });
+      }
+    } catch (error) {
+      toast.error(error.response.data.error);
     }
-
   };
 
   return (
@@ -59,7 +68,10 @@ const Login = () => {
             />
           </div>
           <div className="mb-6">
-            <label className="block font-bold text-black mb-2" htmlFor="password">
+            <label
+              className="block font-bold text-black mb-2"
+              htmlFor="password"
+            >
               Senha
             </label>
             <input
