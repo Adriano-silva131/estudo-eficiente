@@ -21,7 +21,7 @@ class MateriaController extends Controller
         $materias = $this->materiaService->listarMaterias();
 
         return response()->json([
-            'matérias' => $materias
+            'materias' => $materias
         ], 201);
     }
 
