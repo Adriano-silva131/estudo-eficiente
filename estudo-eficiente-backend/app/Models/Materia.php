@@ -15,5 +15,9 @@ class Materia extends Model
         'tipo_materia_id',
     ];
 
+    public function tipo_materia() 
+    {
+        return $this->belongsTo(TipoMateria::class, 'tipo_materia_id');
+    }
     
 }

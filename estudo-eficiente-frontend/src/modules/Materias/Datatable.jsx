@@ -10,11 +10,11 @@ const DataTable = () => {
   if (loading) {
     return <div>Carregando...</div>;
   }
-
+  
   if (error) {
     return <div>Erro ao carregar os dados: {error.message}</div>;
   }
-
+  
   if (!data || data.length === 0) {
     return <div>Nenhum dado encontrado.</div>;
   }
@@ -32,7 +32,7 @@ const DataTable = () => {
                 Descrição
               </th>
               <th scope="col" className="px-6 py-3">
-                Tipo Matéria
+                Tipo de Matéria
               </th>
               <th scope="col" className="px-6 py-3">
                 Ação
@@ -49,7 +49,7 @@ const DataTable = () => {
               >
                 <td className="px-6 py-4">{item.codigo_materia}</td>
                 <td className="px-6 py-4">{item.nome_materia}</td>
-                <td className="px-6 py-4">{item.tipo_materia_id}</td>
+                <td className="px-6 py-4">{item.tipo_materia.tipo_materia_nome}</td>
                 <td className="px-6 py-4">
                   <a
                     href="#"

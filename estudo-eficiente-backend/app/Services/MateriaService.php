@@ -30,7 +30,7 @@ class MateriaService
     }
 
     public function listarMaterias () {
-        $materias = Materia::all();
+        $materias = Materia::with('tipo_materia')->get();
 
         return $materias;
     }

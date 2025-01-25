@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useApi from "../../hooks/UseApiHook";
 import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
+import { Button, TextField } from "@mui/material";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -23,6 +24,17 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (!email) {
+      setError(true);
+      return;
+    }
+
+    if (!password) {
+      setError(true);
+      return;
+    }
+
     const toastId = toast.loading("Processando...");
     try {
       const response = await fetchData();
@@ -32,7 +44,7 @@ const Login = () => {
           render: `Bem-vindo, ${response.user.name}!`,
           type: "success",
           isLoading: false,
-          autoClose: 3000, // Fecha após 3 segundos
+          autoClose: 3000,
         });
         localStorage.setItem("token", response.access_token);
         navigate("/");
@@ -42,7 +54,13 @@ const Login = () => {
         });
       }
     } catch (error) {
-      toast.error(error.response.data.error);
+      // toast.error(error.response.data.error);
+      toast.update(toastId, {
+        render: `${error.response.data.error}`,
+        type: "error",
+        isLoading: false,
+        autoClose: 3000,
+      });
     }
   };
 
@@ -55,41 +73,47 @@ const Login = () => {
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block font-bold text-black mb-2" htmlFor="email">
-              Email
-            </label>
-            <input
-              type="email"
+            <TextField
               id="email"
-              className="w-full p-3 rounded bg-stone-100 text-black focus:outline-none focus:ring-2 focus:ring-blue-700"
+              label="Digite seu email"
+              type="email"
+              variant="outlined"
+              fullWidth
               placeholder="Digite seu email"
               value={email}
+              error={error}
+              helperText={error ? "O campo email não pode estar vazio." : ""}
               onChange={(event) => setEmail(event.target.value)}
             />
           </div>
           <div className="mb-6">
-            <label
-              className="block font-bold text-black mb-2"
-              htmlFor="password"
-            >
-              Senha
-            </label>
-            <input
-              type="password"
+            <TextField
               id="password"
-              className="w-full p-3 rounded bg-stone-100 text-black focus:outline-none focus:ring-2 focus:ring-blue-700"
-              placeholder="Digite sua senha"
+              label="Digite sua senha"
+              type="password"
+              variant="outlined"
+              fullWidth
               value={password}
+              error={error}
+              helperText={error ? "O campo de senha não pode estar vazio." : ""}
               onChange={(event) => setPassword(event.target.value)}
+              placeholder="Digite sua senha"
             />
           </div>
-          <button
+          <Button
             type="submit"
-            className="w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-600 transition duration-300"
+            variant="contained"
+            color="primary"
+            fullWidth
             disabled={loading}
+            style={{
+              padding: "12px",
+              borderRadius: "8px",
+              transition: "background-color 0.3s",
+            }}
           >
             Login
-          </button>
+          </Button>
         </form>
         <p className="text-gray-400 text-center mt-4">
           Não possui conta ?{" "}

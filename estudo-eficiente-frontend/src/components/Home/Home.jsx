@@ -1,12 +1,15 @@
-import React from 'react'
-import { useState } from 'react';
+import React from "react";
+import Welcome from "./Welcome";
+import SectionStudent from "./SectionStudent";
+import Footer from "./Footer";
 const Home = () => {
-return (
+  return (
     <div>
-        
+      <Welcome />
+      <SectionStudent />
+      <Footer />
     </div>
-)
-}
+  );
+};
 
-
-export default Home
+export default Home;

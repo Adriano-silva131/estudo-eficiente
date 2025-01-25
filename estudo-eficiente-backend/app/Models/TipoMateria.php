@@ -13,4 +13,9 @@ class TipoMateria extends Model
         'tipo_materia_codigo',
         'tipo_materia_nome',
     ];
+
+    public function materias() 
+    {
+        return $this->hasMany(Materia::class, 'tipo_materia_id');
+    }
 }
