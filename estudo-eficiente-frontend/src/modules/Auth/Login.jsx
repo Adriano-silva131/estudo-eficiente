@@ -47,14 +47,13 @@ const Login = () => {
           autoClose: 3000,
         });
         localStorage.setItem("token", response.access_token);
-        navigate("/");
+        navigate("/app/dashboard");
         login({
           name: response.user.name,
           email: response.user.email,
         });
       }
     } catch (error) {
-      // toast.error(error.response.data.error);
       toast.update(toastId, {
         render: `${error.response.data.error}`,
         type: "error",
@@ -66,7 +65,7 @@ const Login = () => {
 
   return (
     <div className="h-screen flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+      <div className="bg-gray-100 p-8 rounded-lg shadow-lg w-full max-w-md">
         <h1 className="text-2xl font-bold text-black mb-6 text-center">
           Login
         </h1>

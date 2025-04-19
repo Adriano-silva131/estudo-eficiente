@@ -12,26 +12,30 @@ class MateriaService
         $tipoMateria = TipoMateria::where('tipo_materia_codigo', $dados['tipo_materia_codigo'])->first();
 
         if (!$tipoMateria) {
-            throw new \Exception('Tipo de matéria não encontrado.');
+            throw new ModelNotFoundException('Tipo de matéria não encontrado.');
         }
 
-        try {
-            $materia = Materia::firstOrCreate ([
+            return Materia::firstOrCreate ([
                 'codigo_materia' => $dados['codigo_materia'],
                 'nome_materia' => $dados['nome_materia'],
                 'tipo_materia_id' => $tipoMateria->id
             ]);
-
-            return $materia;
-            
-        } catch (\Exception $e) {
-            throw new \Exception("Erro ao criar matéria: " . $e->getMessage());
-        }
     }
 
     public function listarMaterias () {
         $materias = Materia::with('tipo_materia')->get();
 
         return $materias;
+    }
+
+    public function obterMateriaPorId(int $id): Materia 
+    {
+        return Materia::with('tipo_materia')->findOrFail($id);
+    }
+
+    public function deletarMateria(int $id) : void
+    {
+        $materia = Materia::findOrFail($id);
+        $materia->delete();
     }
 }

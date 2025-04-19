@@ -20,17 +20,6 @@ const Navbar = ({ toggleSidebar }) => {
           <span>LOGO</span>
         </div>
         <div className="flex items-center">
-          {isAuthenticated && (
-            <button onClick={toggleSidebar} className="text-black mr-4">
-              <FontAwesomeIcon
-                icon={faBars}
-                style={{ color: "#0ea5e9" }}
-                className="mr-2"
-              />
-            </button>
-          )}
-        </div>
-        <div className="flex items-center">
           <div className="hidden md:flex items-center space-x-4">
             <Link
               to="/login"

@@ -6,6 +6,8 @@ use App\Http\Requests\MateriaRequest;
 use App\Models\Materia;
 use App\Services\MateriaService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class MateriaController extends Controller
 {
@@ -18,39 +20,34 @@ class MateriaController extends Controller
 
     public function index()
     {
-        $materias = $this->materiaService->listarMaterias();
-
-        return response()->json([
-            'materias' => $materias
-        ], 201);
+        return response()->json($this->materiaService->listarMaterias(), Response::HTTP_OK);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(MateriaRequest $request)
     {
-        $materias = $request->validated();
-
         try {
-
+            $materias = $request->validated();
             $materiaStore = $this->materiaService->criarMateria($materias);
 
             return response()->json([
                 'message' => 'Matéria criada com sucesso!',
                 'matéria' => $materiaStore
-            ], 201);
+            ], Response::HTTP_CREATED);
+
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Erro: Tipo de matéria não encontrado',
+                'error' => $e->getMessage()
+            ], Response::HTTP_NOT_FOUND);
+
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Erro ao criar o matéria.',
                 'error' => $e->getMessage()
-            ], 500);
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //

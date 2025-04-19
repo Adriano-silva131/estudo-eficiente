@@ -4,7 +4,7 @@ import icon from "../../assets/Svg/Heart.svg";
 import puzzle from "../../assets/Svg/Puzzle.svg";
 const SectionStudent = () => {
   return (
-    <div className="relative mx-auto px-4 sm:px-6 md:px-8 w-full bg-white">
+    <div className="relative mx-auto px-4 sm:px-6 md:px-8 w-full bg-indigo-50">
       <div className="py-16 flex flex-col lg:flex-row items-center gap-8">
         <div className="lg:w-1/2 flex justify-center">
           <img
