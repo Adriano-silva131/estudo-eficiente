@@ -10,10 +10,10 @@ Route::post('/login', [AuthController::class, 'login']);
 
 
 Route::middleware('auth:api')->group(function () {
-    
+
     //Materias
-    Route::post('/criar-materia', [MateriaController::class, 'store']);
-    Route::get('/lista-materias', [MateriaController::class, 'index']);
+    Route::post('/materias', [MateriaController::class, 'store']);
+    Route::get('/materias', [MateriaController::class, 'index']);
 
     //users
     Route::post('/logout', [AuthController::class, 'logout']);

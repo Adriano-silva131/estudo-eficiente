@@ -24,7 +24,6 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     if (!email) {
       setError(true);
       return;
@@ -38,7 +37,6 @@ const Login = () => {
     const toastId = toast.loading("Processando...");
     try {
       const response = await fetchData();
-
       if (response && response.access_token) {
         toast.update(toastId, {
           render: `Bem-vindo, ${response.user.name}!`,
