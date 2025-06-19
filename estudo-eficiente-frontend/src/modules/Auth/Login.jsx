@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import useApi from "../../hooks/UseApiHook";
 import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
-import { Button, TextField } from "@mui/material";
 
 const Login = () => {
   const [email, setEmail] = useState("");
