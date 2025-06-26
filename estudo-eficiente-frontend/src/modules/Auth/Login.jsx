@@ -1,9 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, {useContext, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
 import useApi from "../../hooks/UseApiHook";
-import { AuthContext } from "../../context/AuthContext";
-import { toast } from "react-toastify";
-
+import {AuthContext} from "../../context/AuthContext";
+import {toast} from "react-toastify";
+import loginStudent from "../../assets/login-flat-human.png";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,64 +61,68 @@ const Login = () => {
   };
 
   return (
-    <div className="h-screen flex items-center justify-center">
-      <div className="bg-gray-100 p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h1 className="text-2xl font-bold text-black mb-6 text-center">
-          Login
-        </h1>
-        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <TextField
-              id="email"
-              label="Digite seu email"
-              type="email"
-              variant="outlined"
-              fullWidth
-              placeholder="Digite seu email"
-              value={email}
-              error={error}
-              helperText={error ? "O campo email não pode estar vazio." : ""}
-              onChange={(event) => setEmail(event.target.value)}
+      <div className="h-screen flex items-center max-h-4xl justify-center bg-gray-100">
+        <div className="flex w-full max-w-6xl shadow-lg">
+          {/* Imagem à esquerda */}
+          <div className="w-1/2 rounded-l-lg overflow-hidden bg-orange-500 hidden lg:block">
+            <img
+                src={loginStudent}
+                alt="Login Illustration"
+                className="w-full h-full object-cover"
             />
           </div>
-          <div className="mb-6">
-            <TextField
-              id="password"
-              label="Digite sua senha"
-              type="password"
-              variant="outlined"
-              fullWidth
-              value={password}
-              error={error}
-              helperText={error ? "O campo de senha não pode estar vazio." : ""}
-              onChange={(event) => setPassword(event.target.value)}
-              placeholder="Digite sua senha"
-            />
+          {/* Formulário à direita */}
+          <div className="w-full lg:w-1/2 bg-white p-8 rounded-r-lg flex flex-col justify-center">
+            <h1 className="text-2xl font-bold text-black mb-6 text-center">
+              Login
+            </h1>
+            {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+            <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-6">
+              {/* E-mail */}
+              <div>
+                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                  Email
+                </label>
+                <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    className="block w-full rounded-md border border-gray-300 px-4 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                    placeholder="Digite seu email"
+                />
+              </div>
+              {/* Senha */}
+              <div>
+                <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">
+                  Senha
+                </label>
+                <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    required
+                    className="block w-full rounded-md border border-gray-300 px-4 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                    placeholder="Digite sua senha"
+                />
+              </div>
+              {/* Botão */}
+              <button
+                  type="submit"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-md transition"
+              >
+                Login
+              </button>
+            </form>
+            <p className="text-gray-400 text-center mt-4">
+              Não possui conta?{" "}
+              <Link to="/register" className="text-orange-500 hover:underline">
+                Registrar
+              </Link>
+            </p>
           </div>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            disabled={loading}
-            style={{
-              padding: "12px",
-              borderRadius: "8px",
-              transition: "background-color 0.3s",
-            }}
-          >
-            Login
-          </Button>
-        </form>
-        <p className="text-gray-400 text-center mt-4">
-          Não possui conta ?{" "}
-          <Link to="/register" className="text-blue-500 hover:underline">
-            Registrar
-          </Link>
-        </p>
+        </div>
       </div>
-    </div>
   );
 };
 

@@ -1,9 +1,6 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
-import { faBars, faUser } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "./Navbar.module.css";
+import React, {useContext, useState} from "react";
+import {Link} from "react-router-dom";
+import {AuthContext} from "../../context/AuthContext";
 
 const Navbar = ({ toggleSidebar }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +22,7 @@ const Navbar = ({ toggleSidebar }) => {
               to="/login"
               className="text-black hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
-              <span className={styles.roundedBorder}>Login</span>
+              <span className="bg-orange-400 hover:bg-orange-300 text-white font-bold py-2 px-4 border-b-4 border-orange-700 hover:border-orange-500 rounded">Login</span>
             </Link>
           </div>
         </div>
