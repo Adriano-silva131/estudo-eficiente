@@ -13,7 +13,7 @@ const Footer = () => {
             </div>
             <p className="mt-4 text-sm text-gray-600">
               O Estudo Eficiente é um projeto desenvolvido por mim para auxilar
-              os estudos de todo o brasil, com o objeto de ajudar os estudantes
+              os estudos de todo o Brasil, com o objetivo de ajudar os estudantes
               a se organizarem e terem um melhor desempenho nos estudos.
             </p>
           </div>
@@ -36,7 +36,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-gray-800">Contato</h3>
             <ul className="mt-4 space-y-2 text-sm text-gray-600">
               <li>adriano_silva131@outlook.com</li>
-              <li>Bento gonçalves, Rio grande do sul, Brasil</li>
+              <li>Bento gonçalves, Rio Grande do Sul, Brasil</li>
             </ul>
           </div>
         </div>

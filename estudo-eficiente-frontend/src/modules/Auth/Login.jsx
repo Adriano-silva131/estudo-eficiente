@@ -4,6 +4,7 @@ import useApi from "../../hooks/UseApiHook";
 import {AuthContext} from "../../context/AuthContext";
 import {toast} from "react-toastify";
 import loginStudent from "../../assets/login-flat-human.png";
+import googleIconUrl from "../../assets/google.png";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,7 +62,7 @@ const Login = () => {
   };
 
   return (
-      <div className="h-screen flex items-center max-h-4xl justify-center bg-gray-100">
+      <div className="h-[93vh] flex items-center justify-center bg-gray-100">
         <div className="flex w-full max-w-6xl shadow-lg">
           {/* Imagem à esquerda */}
           <div className="w-1/2 rounded-l-lg overflow-hidden bg-orange-500 hidden lg:block">
@@ -76,9 +77,9 @@ const Login = () => {
             <h1 className="text-2xl font-bold text-black mb-6 text-center">
               Login
             </h1>
+            <h3 className="m-auto">Logo</h3>
             {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-            <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-6">
-              {/* E-mail */}
+            <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-6 m-auto">
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
                   Email
@@ -112,6 +113,13 @@ const Login = () => {
                   className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-md transition"
               >
                 Login
+              </button>
+              <button
+                  type="submit"
+                  className="w-full bg-white text-black py-2 rounded-md transition flex items-center justify-center gap-2 border-2 border-gray-300"
+              >
+                <img src={googleIconUrl} alt="" className="h-5 w-5 shrink-0 bg-white" />
+                Continuar com o Google
               </button>
             </form>
             <p className="text-gray-400 text-center mt-4">
