@@ -74,10 +74,10 @@ const Login = () => {
           </div>
           {/* Formulário à direita */}
           <div className="w-full lg:w-1/2 bg-white p-8 rounded-r-lg flex flex-col justify-center">
-            <h1 className="text-2xl font-bold text-black mb-6 text-center">
+            <h1 className="text-2xl font-bold text-gray-700 mb-6 text-center">
               Login
             </h1>
-            <h3 className="m-auto">Logo</h3>
+            <h3 className="m-auto text-gray-700">Logo</h3>
             {error && <p className="text-red-500 text-center mb-4">{error}</p>}
             <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-6 m-auto">
               <div>
@@ -107,20 +107,21 @@ const Login = () => {
                     placeholder="Digite sua senha"
                 />
               </div>
-              {/* Botão */}
-              <button
-                  type="submit"
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-md transition"
-              >
-                Login
-              </button>
-              <button
-                  type="submit"
-                  className="w-full bg-white text-black py-2 rounded-md transition flex items-center justify-center gap-2 border-2 border-gray-300"
-              >
-                <img src={googleIconUrl} alt="" className="h-5 w-5 shrink-0 bg-white" />
-                Continuar com o Google
-              </button>
+              <div className="flex-col space-y-2">
+                <button
+                    type="submit"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-md transition"
+                >
+                  Login
+                </button>
+                <button
+                    type="submit"
+                    className="w-full bg-white text-gray-700 text-black py-2 rounded-md transition flex items-center justify-center gap-2 border-2 border-gray-300"
+                >
+                  <img src={googleIconUrl} alt="" className="h-5 w-5 shrink-0 bg-white" />
+                  Continuar com o Google
+                </button>
+              </div>
             </form>
             <p className="text-gray-400 text-center mt-4">
               Não possui conta?{" "}

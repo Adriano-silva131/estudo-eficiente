@@ -18,8 +18,7 @@ const SectionStudent = () => {
                     </div>
                     <div className="lg:w-1/2">
                         <h2 className="text-4xl sm:text-5xl font-bold text-stone-100 leading-tight">
-                            Uma experiencia <span className="text-orange-400">premium de estudos</span> , feita para você. Estudos que vão
-                            de encontro com a <span className="text-orange-400">sua realidade.</span>
+                            Uma experiência <span className="font-black">premium</span> de estudos, feita para você. Estudos que vão de encontro com a <span className="font-black">sua realidade.</span>
                         </h2>
                         <div className="mt-8 space-y-6">
                             <div className="flex items-center gap-4">
