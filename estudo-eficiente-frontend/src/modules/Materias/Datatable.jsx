@@ -1,24 +1,6 @@
 import React, { useEffect } from "react";
-import useApi from "../../hooks/UseApiHook";
 
 const DataTable = () => {
-  const { data, error, loading, fetchData } = useApi("/api/lista-materias");
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return <div>Carregando...</div>;
-  }
-  
-  if (error) {
-    return <div>Erro ao carregar os dados: {error.message}</div>;
-  }
-  
-  if (!data || data.length === 0) {
-    return <div>Nenhum dado encontrado.</div>;
-  }
-
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">

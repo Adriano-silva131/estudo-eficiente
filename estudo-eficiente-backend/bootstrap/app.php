@@ -12,8 +12,16 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->statefulApi();
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
-    })->create();
+    })
+    ->withCors(function ($cors) {
+        $cors->withPaths(['api/*', 'sanctum/csrf-cookie'])
+            ->withAllowedOrigins([env('FRONTEND_URL', 'http://localhost:5173')])
+            ->withAllowedHeaders(['X-Requested-With', 'Content-Type', 'Accept', 'Authorization'])
+            ->withAllowedMethods(['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'])
+            ->withSupportsCredentials();
+    })
+    ->create();

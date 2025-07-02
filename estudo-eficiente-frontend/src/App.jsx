@@ -1,20 +1,18 @@
 import "./App.css";
 import {BrowserRouter as Router} from "react-router-dom";
 import AppRoutes from "./routes/AppRoutes";
-import Navbar from "./components/Header/Navbar";
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {AuthProvider} from "./context/AuthContext";
+import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
 
 function App() {
-  return (
-    <Router>
-      <AuthProvider>
-        <AppRoutes />
-      </AuthProvider>
-      <ToastContainer />
-    </Router>
-  );
+    return (
+        <Router>
+            <AppRoutes/>
+            <ToastContainer/>
+            <ReactQueryDevtools initialIsOpen={false}/>
+        </Router>
+    );
 }
 
 export default App;

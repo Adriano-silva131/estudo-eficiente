@@ -9,7 +9,7 @@ Route::post('/register', [UserController::class, 'store']);
 Route::post('/login', [AuthController::class, 'login']);
 
 
-Route::middleware('auth:api')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
 
     //Materias
     Route::post('/materias', [MateriaController::class, 'store']);

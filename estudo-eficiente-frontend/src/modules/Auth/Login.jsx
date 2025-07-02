@@ -1,65 +1,12 @@
-import React, {useContext, useState} from "react";
+import React from "react";
 import {Link, useNavigate} from "react-router-dom";
-import useApi from "../../hooks/UseApiHook";
-import {AuthContext} from "../../context/AuthContext";
-import {toast} from "react-toastify";
 import loginStudent from "../../assets/login-flat-human.png";
 import googleIconUrl from "../../assets/google.png";
+import {useQueryClient} from "@tanstack/react-query";
+
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
-
-  const {
-    data,
-    error: apiError,
-    loading,
-    fetchData,
-  } = useApi("/api/login", "POST", {
-    email,
-    password,
-  });
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (!email) {
-      setError(true);
-      return;
-    }
-
-    if (!password) {
-      setError(true);
-      return;
-    }
-
-    const toastId = toast.loading("Processando...");
-    try {
-      const response = await fetchData();
-      if (response && response.access_token) {
-        toast.update(toastId, {
-          render: `Bem-vindo, ${response.user.name}!`,
-          type: "success",
-          isLoading: false,
-          autoClose: 3000,
-        });
-        localStorage.setItem("token", response.access_token);
-        navigate("/app/dashboard");
-        login({
-          name: response.user.name,
-          email: response.user.email,
-        });
-      }
-    } catch (error) {
-      toast.update(toastId, {
-        render: `${error.response.data.error}`,
-        type: "error",
-        isLoading: false,
-        autoClose: 3000,
-      });
-    }
-  };
+  const queryClient = useQueryClient();
 
   return (
       <div className="h-[93vh] flex items-center justify-center bg-gray-100">
@@ -78,8 +25,7 @@ const Login = () => {
               Login
             </h1>
             <h3 className="m-auto text-gray-700">Logo</h3>
-            {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-            <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-6 m-auto">
+            <form onSubmit="" className="w-full max-w-sm space-y-6 m-auto">
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
                   Email
