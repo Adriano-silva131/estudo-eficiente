@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Services\AuthService;
-use Exception;
-use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\JsonResponse;
-use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -20,18 +17,15 @@ class AuthController extends Controller
         $this->authService = $authService;
     }
 
-    public function login (LoginRequest $request): JsonResponse
+    public function login (LoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+        $credentials = $request->validated();
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('web')->attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
-            return response()->json(Auth::user());
+            return response()->noContent();
         }
-        return response()->json(['message' => 'Credenciais inválidas'], 401);
+        return response()->json(['message' => 'Credenciais inválidas'], 422);
     }
 
     public function logout(Request $request)

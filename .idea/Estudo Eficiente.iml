@@ -84,7 +84,6 @@
       <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/sebastian/recursion-context" />
       <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/sebastian/type" />
       <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/sebastian/version" />
-      <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/stella-maris/clock" />
       <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/symfony/clock" />
       <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/symfony/console" />
       <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/symfony/css-selector" />
@@ -120,6 +119,14 @@
       <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/league/uri" />
+      <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/league/uri-interfaces" />
+      <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/spatie/backtrace" />
+      <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/spatie/error-solutions" />
+      <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/spatie/flare-client-php" />
+      <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/spatie/ignition" />
+      <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/spatie/laravel-ignition" />
+      <excludeFolder url="file://$MODULE_DIR$/estudo-eficiente-backend/vendor/staabm/side-effects-detector" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -17,11 +17,4 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })
-    ->withCors(function ($cors) {
-        $cors->withPaths(['api/*', 'sanctum/csrf-cookie'])
-            ->withAllowedOrigins([env('FRONTEND_URL', 'http://localhost:5173')])
-            ->withAllowedHeaders(['X-Requested-With', 'Content-Type', 'Accept', 'Authorization'])
-            ->withAllowedMethods(['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'])
-            ->withSupportsCredentials();
-    })
     ->create();

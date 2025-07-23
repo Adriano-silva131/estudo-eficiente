@@ -1,12 +1,38 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import loginStudent from "../../assets/login-flat-human.png";
 import googleIconUrl from "../../assets/google.png";
-import {useQueryClient} from "@tanstack/react-query";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
+import {loginAPI} from "../../api/authAPI.js";
 
 const Login = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+
+  const [form, setForm] = useState({email: '', password: ''})
+  const [error, setError] = useState(null)
+
+  const {mutate, isPending} = useMutation({
+    mutationFn: loginAPI,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+      navigate('/dashboard');
+    },
+    onError: (error) => {
+      setError(error.response?.data?.message || 'Erro ao fazer login');
+    }
+  })
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({...prev, [name]: value }))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setError(null);
+    mutate(form);
+  };
 
   return (
       <div className="h-[93vh] flex items-center justify-center bg-gray-100">
@@ -25,7 +51,7 @@ const Login = () => {
               Login
             </h1>
             <h3 className="m-auto text-gray-700">Logo</h3>
-            <form onSubmit="" className="w-full max-w-sm space-y-6 m-auto">
+            <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-6 m-auto">
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
                   Email
@@ -35,6 +61,8 @@ const Login = () => {
                     name="email"
                     type="email"
                     required
+                    value={form.email}
+                    onChange={handleChange}
                     className="block w-full rounded-md border border-gray-300 px-4 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-400"
                     placeholder="Digite seu email"
                 />
@@ -49,6 +77,8 @@ const Login = () => {
                     name="password"
                     type="password"
                     required
+                    value={form.password}
+                    onChange={handleChange}
                     className="block w-full rounded-md border border-gray-300 px-4 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-400"
                     placeholder="Digite sua senha"
                 />
@@ -56,6 +86,7 @@ const Login = () => {
               <div className="flex-col space-y-2">
                 <button
                     type="submit"
+                    disabled={isPending}
                     className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-md transition"
                 >
                   Login
