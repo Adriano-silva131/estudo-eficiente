@@ -1,9 +1,8 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Container from "./Container";
-
+import Materia from "./Materias";
 const MateriasRoutes = [
-    <Route path="app/materia" element={<Container />} key="materia" />,
+    <Route path="/materia" element={<Materia />} key="materia" />,
 ];
 
 export default MateriasRoutes;
