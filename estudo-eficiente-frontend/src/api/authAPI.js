@@ -6,5 +6,14 @@ export const loginAPI = async (credentials) => {
     return data;
 }
 
-export const fetchUserAPI = () => axiosConfig.get('/api/user').then(r => r.data);
+export const  fetchUserAPI = async () => {
+    try {
+        const { data } = await axiosConfig.get("/api/user");
+        return data;
+    } catch (err) {
+        const status = err?.response?.status;
+        if (status === 401) return null;
+        throw err;
+    }
+};
 export const logoutAPI = () => axiosConfig.post('/logout');

@@ -20,8 +20,7 @@ export const AuthProvider = ({children}) => {
     const loginMutation = useMutation({
         mutationFn: loginAPI,
         onSuccess: async () => {
-            const me = await fetchUserAPI();
-            queryClient.setQueryData(['user'], me);
+            await queryClient.invalidateQueries({ queryKey: ['user'] });
             navigate('/dashboard');
         }
     });
@@ -29,7 +28,7 @@ export const AuthProvider = ({children}) => {
     const logoutMutation = useMutation({
         mutationFn: logoutAPI,
         onSuccess: () => {
-            queryClient.setQueryData(['user'], false);
+            queryClient.setQueryData(['user'], null);
             navigate('/login');
         },
     });
