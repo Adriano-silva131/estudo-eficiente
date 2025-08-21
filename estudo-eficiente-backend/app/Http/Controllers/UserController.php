@@ -21,15 +21,11 @@ class UserController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(UserRequest $request)
     {
         $dados = $request->validated();
 
         try {
-            // Chama o método do serviço passando os dados validados (array)
             $userStore = $this->user->criarUsuario($dados);
 
             return response()->json([
