@@ -1,7 +1,7 @@
-import React, {useContext, useState} from "react";
-import {Link} from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 
-const Navbar = ({ }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -20,7 +20,9 @@ const Navbar = ({ }) => {
               to="/login"
               className="text-black hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
-              <span className="bg-orange-400 hover:bg-orange-300 text-white font-bold py-2 px-4 border-b-4 border-orange-700 hover:border-orange-500 rounded">Login</span>
+              <span className="bg-orange-400 hover:bg-orange-300 text-white font-bold py-2 px-4 border-b-4 border-orange-700 hover:border-orange-500 rounded">
+                Login
+              </span>
             </Link>
           </div>
         </div>
