@@ -9,6 +9,9 @@ import {
   LogOut,
   BookOpen,
   ChevronRight,
+  Clock,
+  NotebookPen,
+  LibraryBig
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 
@@ -59,11 +62,16 @@ const items: NavItem[] = [
     url: "/dashboard",
   },
   {
+    title: "Pomodoro",
+    icon: Clock,
+    url: "/pomodoro",
+  },
+  {
     title: "Matérias",
-    icon: FileText,
+    icon: NotebookPen,
     children: [
       { title: "Matérias", icon: BookOpen, url: "/materia" },
-      { title: "Tipo Matérias", icon: Folder, url: "/tipomateria" },
+      { title: "Tipo Matérias", icon: LibraryBig, url: "/tipomateria" },
     ],
   },
 ];

@@ -9,16 +9,16 @@ import { AppSidebar } from "../../components/ui/app-sidebar";
 export default function PrivateLayout() {
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen">
+      <div className="flex min-h-screen w-full">
         <AppSidebar />
-        <SidebarInset>
-          <div>
-            <div className="flex items-center gap-2 p-2">
-              <SidebarTrigger />
+        <SidebarInset className="flex-1">
+          <header className="sticky top-0 z-10 flex h-14 items-center gap-2 border-b bg-background px-6">
+            <SidebarTrigger />
+          </header>
+          <main className="flex-1 p-6">
+            <div className="mx-auto max-w-7xl">
+              <Outlet />
             </div>
-          </div>
-          <main className="p-4">
-            <Outlet />
           </main>
         </SidebarInset>
       </div>
