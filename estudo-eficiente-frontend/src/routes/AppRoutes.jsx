@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import PrivateRoute, { PublicRoute } from "../routes/PrivateRoute.jsx";
 import PublicLayout from "../components/Layouts/PublicLayout";
-import HomeRoutes from "../components/Home/HomeRoutes";
+import HomeRoutes from "../modules/Home/HomeRoutes";
 import AuthRoutes from "../modules/Auth/AuthRoutes";
 import DashboardRoutes from "../modules/Dashboard/DashboardRoutes";
 import MateriaRoutes from "../modules/Materias/MateriasRoutes";
